@@ -27,7 +27,7 @@ img { display: block; }
 .canvas { position: relative; width: 1440px; height: 100%; margin: 0 auto; }
 @media (min-width: 768px) and (max-width: 1439px) { .page { zoom: calc(100vw / 1440px); } }
 
-.container { position: relative; width: 1280px; margin: 0 auto; }
+.inner { position: relative; width: 1280px; margin: 0 auto; }
 .mobile-only { display: none; }
 
 .site-header { position: sticky; top: 0; z-index: 20; background: #fff; transition: box-shadow 0.3s ease; }
@@ -231,7 +231,7 @@ img { display: block; }
   .page { width: 375px; min-width: 0; }
   .canvas { width: 375px; }
   .page { zoom: calc(100vw / 375px); }
-  .container { width: 375px; }
+  .inner { width: 375px; }
   .desktop-only { display: none !important; }
   .mobile-only { display: block; }
 
