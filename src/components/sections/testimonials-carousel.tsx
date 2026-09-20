@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export type TestimonialCard = { id?: number; name: string; role: string; image: string; quote: string };
 
@@ -13,12 +13,33 @@ export function TestimonialsCarousel({ items }: { items: TestimonialCard[] }) {
   const [position, setPosition] = useState(count);
   const [animated, setAnimated] = useState(true);
   const [paused, setPaused] = useState(false);
+  const positionRef = useRef(count);
+  const trackRef = useRef<HTMLDivElement>(null);
   const active = ((position % count) + count) % count;
 
+  const inRange = useCallback((value: number) => value >= count && value < count * 2, [count]);
+  const normalize = useCallback((value: number) => count + (((value % count) + count) % count), [count]);
+
   const move = useCallback((delta: number) => {
+    const current = positionRef.current;
+    if (inRange(current)) {
+      positionRef.current = current + delta;
+      setAnimated(true);
+      setPosition(positionRef.current);
+      return;
+    }
+    const base = normalize(current);
+    const track = trackRef.current;
+    if (track) {
+      track.style.transition = "none";
+      track.style.transform = `translateX(calc(${-base} * var(--step)))`;
+      void track.offsetWidth;
+      track.style.transition = "";
+    }
+    positionRef.current = base + delta;
     setAnimated(true);
-    setPosition((current) => current + delta);
-  }, []);
+    setPosition(positionRef.current);
+  }, [inRange, normalize]);
 
   const goTo = (index: number) => {
     const forward = (index - active + count) % count;
@@ -28,13 +49,14 @@ export function TestimonialsCarousel({ items }: { items: TestimonialCard[] }) {
   };
 
   useEffect(() => {
-    if (position >= count && position < count * 2) return;
+    if (inRange(position)) return;
     const timer = window.setTimeout(() => {
+      positionRef.current = normalize(position);
       setAnimated(false);
-      setPosition(count + (((position % count) + count) % count));
+      setPosition(positionRef.current);
     }, TRANSITION_MS);
     return () => window.clearTimeout(timer);
-  }, [position, count]);
+  }, [position, inRange, normalize]);
 
   useEffect(() => {
     if (paused) return;
@@ -63,7 +85,7 @@ export function TestimonialsCarousel({ items }: { items: TestimonialCard[] }) {
       onBlur={() => setPaused(false)}
     >
       <div className="testimonials__track">
-        <div className={`testimonials__slides${animated ? "" : " no-transition"}`} style={{ transform: `translateX(calc(${-position} * var(--step)))` }}>
+        <div ref={trackRef} className={`testimonials__slides${animated ? "" : " no-transition"}`} style={{ transform: `translateX(calc(${-position} * var(--step)))` }}>
           {slides.map((item, index) => {
             const isVisible = index >= position && index < position + 4;
             return (
