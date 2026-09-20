@@ -5,19 +5,23 @@ import { Services } from "@/components/sections/services";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function Home() {
   return (
-    <div className="page">
-      <Header />
-      <main>
-        <Hero />
-        <Services />
-        <Feature />
-        <Cta />
-        <Testimonials />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <div className="page">
+        <Header />
+        <main>
+          <Hero />
+          <Services />
+          <Feature />
+          <Cta />
+          <Testimonials />
+        </main>
+        <Footer />
+      </div>
+      <Toaster />
+    </>
   );
 }
