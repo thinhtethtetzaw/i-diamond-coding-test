@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { getTestimonials } from "@/lib/api/testimonials";
+import { TestimonialsCarousel } from "./testimonials-carousel";
 
 const profiles = [
   ["Amira K", "/assets/testimonial-amira.png", "Absolutely breathtaking! The craftsmanship of my diamond ring."],
@@ -10,22 +10,18 @@ const profiles = [
 
 export async function Testimonials() {
   const apiTestimonials = await getTestimonials();
+  const items = profiles.map(([name, image, quote], index) => ({
+    id: apiTestimonials[index]?.id,
+    name,
+    image,
+    quote,
+    role: "Product Quality Engineer",
+  }));
+
   return (
     <section className="testimonials" id="testimonials" aria-labelledby="testimonials-title">
       <h2 id="testimonials-title">Testimonials</h2>
-      <div className="testimonials__track">
-        {profiles.map(([name, image, quote], index) => (
-          <article key={name}>
-            <Image src={image} alt={name} width={120} height={120} />
-            <h3>{name}</h3>
-            <small>Product Quality Engineer</small>
-            <p data-source-id={apiTestimonials[index]?.id}>{quote}</p>
-          </article>
-        ))}
-      </div>
-      <button className="testimonials__arrow testimonials__arrow--prev" aria-label="Previous testimonials"><Image src="/assets/testimonial-prev.svg" alt="" width={20} height={20} /></button>
-      <button className="testimonials__arrow testimonials__arrow--next" aria-label="Next testimonials"><Image src="/assets/testimonial-next.svg" alt="" width={20} height={20} /></button>
-      <div className="testimonials__dots" aria-hidden="true"><i /><i className="is-active" /><i /></div>
+      <TestimonialsCarousel items={items} />
     </section>
   );
 }
