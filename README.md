@@ -51,6 +51,14 @@ fetch(url, { next: { revalidate: 3600, tags: ["testimonials"] } })
 
 This serves the cached response for up to one hour. A local fallback keeps the page resilient if the public demo API is unavailable.
 
+## Deploy on Vercel
+
+The project ships with a `vercel.json` (Next.js framework preset, Singapore region, long-lived caching for `public/assets`). Import the repository in Vercel, add the `EMAIL_ADDRESS` environment variable in the project settings, and deploy. Or from the CLI:
+
+```bash
+npx vercel --prod
+```
+
 ## Quality checks
 
 ```bash
