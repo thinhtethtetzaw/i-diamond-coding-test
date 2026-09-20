@@ -9,6 +9,7 @@ const benefits = [
 export function Feature() {
   return (
     <section className="benefits" aria-labelledby="benefits-title">
+      <div className="canvas">
       <Image className="benefits__circles" src="/assets/benefits-circles.svg" alt="" width={742} height={585} />
       <h2 id="benefits-title">Why Choose MyJewel?</h2>
       {benefits.map(([icon, title, description]) => (
@@ -18,6 +19,7 @@ export function Feature() {
           <p>{description}</p>
         </article>
       ))}
+      </div>
     </section>
   );
 }

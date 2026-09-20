@@ -46,7 +46,7 @@ export function Header() {
   return (
     <header className={`site-header${isScrolled ? " is-scrolled" : ""}`}>
       <div className="desktop-only">
-        <div className="topbar">
+        <div className="topbar"><div className="canvas">
           <a className="topbar__book" href="#appointment">
             <Image src="/assets/header-calendar.svg" alt="" width={20} height={20} />
             <span>Book an appointment</span>
@@ -57,8 +57,8 @@ export function Header() {
             <a href="#wishlist" aria-label="Wishlist"><Image src="/assets/header-heart.svg" alt="" width={17} height={17} /></a>
             <a href="#bag" aria-label="Shopping bag"><Image src="/assets/header-bag.svg" alt="" width={17} height={17} /></a>
           </div>
-        </div>
-        <div className="navbar">
+        </div></div>
+        <div className="navbar"><div className="canvas">
           <a href="#" className="brand" aria-label="MyJewel home"><Image src="/assets/logo.svg" alt="MyJewel" width={133} height={35} priority /></a>
           <span className="navbar__rule navbar__rule--left" />
           <nav className="nav" aria-label="Primary navigation" onMouseLeave={() => setOpenMenu(null)}>
@@ -89,7 +89,7 @@ export function Header() {
           <button className="search" type="button" aria-label="Search" aria-expanded={isSearchOpen} onClick={() => setSearchOpen(!isSearchOpen)}>
             <Image src="/assets/header-search.svg" alt="" width={19} height={19} />
           </button>
-        </div>
+        </div></div>
       </div>
 
       <div className="mobile-only">
@@ -113,9 +113,11 @@ export function Header() {
       </div>
 
       <form className={`search-bar${isSearchOpen ? " is-open" : ""}`} role="search" aria-hidden={!isSearchOpen} onSubmit={(event) => { event.preventDefault(); setSearchOpen(false); }}>
-        <label className="sr-only" htmlFor="site-search">Search the store</label>
-        <input ref={searchRef} id="site-search" type="search" placeholder="Search rings, necklaces, gifts…" tabIndex={isSearchOpen ? 0 : -1} />
-        <button type="submit" tabIndex={isSearchOpen ? 0 : -1}>Search</button>
+        <div className="canvas search-bar__inner">
+          <label className="sr-only" htmlFor="site-search">Search the store</label>
+          <input ref={searchRef} id="site-search" type="search" placeholder="Search rings, necklaces, gifts…" tabIndex={isSearchOpen ? 0 : -1} />
+          <button type="submit" tabIndex={isSearchOpen ? 0 : -1}>Search</button>
+        </div>
       </form>
     </header>
   );

@@ -15,6 +15,7 @@ const payments = ["visa", "mastercard", "amex", "applepay", "tabby"] as const;
 export function Footer() {
   return (
     <footer className="site-footer" id="contact-us">
+      <div className="canvas">
       {desktopColumns.map(([title, links]) => (
         <div className="footer-col footer-col--desktop" key={`d-${title}`}>
           <h2>{title}</h2>
@@ -49,6 +50,7 @@ export function Footer() {
           <picture><source media="(max-width: 767px)" srcSet="/assets/m-footer-facebook.svg" /><img src="/assets/footer-facebook.svg" alt="Facebook" /></picture>
           <picture><source media="(max-width: 767px)" srcSet="/assets/m-footer-instagram.svg" /><img src="/assets/footer-instagram.svg" alt="Instagram" /></picture>
         </div>
+      </div>
       </div>
     </footer>
   );

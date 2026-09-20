@@ -20,8 +20,10 @@ export async function Testimonials() {
 
   return (
     <section className="testimonials" id="testimonials" aria-labelledby="testimonials-title">
-      <h2 id="testimonials-title">Testimonials</h2>
-      <TestimonialsCarousel items={items} />
+      <div className="canvas">
+        <h2 id="testimonials-title">Testimonials</h2>
+        <TestimonialsCarousel items={items} />
+      </div>
     </section>
   );
 }

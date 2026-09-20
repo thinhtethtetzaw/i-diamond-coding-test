@@ -5,6 +5,7 @@ const guides = ["How to Select the Ideal Wedding Band", "How to Choose the Engag
 export function Cta() {
   return (
     <section className="education" id="education" aria-labelledby="education-title">
+      <div className="canvas">
       <h2 id="education-title">Explore More</h2>
       <p className="education__intro">Looking for more diamond guides, buying tips or details about the 4Cs? Explore more of our diamond education pages:</p>
       {guides.map((guide, index) => (
@@ -15,6 +16,7 @@ export function Cta() {
       ))}
       <div className="education__image">
         <Image src="/assets/education-jewelry.png" alt="Woman wearing a diamond necklace and earrings" width={597} height={597} sizes="597px" />
+      </div>
       </div>
     </section>
   );

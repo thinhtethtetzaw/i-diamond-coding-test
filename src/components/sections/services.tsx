@@ -12,8 +12,8 @@ const steps = [
 export function Services() {
   return (
     <section className="process" id="custom-jewelry">
-      <nav className="breadcrumb" aria-label="Breadcrumb">Home / <span>Custom Jewelry</span></nav>
       <div className="container">
+        <nav className="breadcrumb" aria-label="Breadcrumb">Home / <span>Custom Jewelry</span></nav>
         <div className="process__intro">
           <h2>Custom Jewelry</h2>
           <p>Create Your Masterpiece: Bespoke Jewelry Crafted for You</p>
