@@ -96,7 +96,7 @@ export function Header() {
         <div className="m-header">
           <div className="m-topbar"><p className="m-topbar__promo"><i /><span>{promo}</span><i /></p></div>
           <button className={`m-header__menu${isMenuOpen ? " is-open" : ""}`} type="button" aria-label="Toggle navigation" aria-expanded={isMenuOpen} onClick={() => setMenuOpen(!isMenuOpen)}>
-            <Image src="/assets/m-header-menu.svg" alt="" width={13} height={9} />
+            <span className="m-header__bars" aria-hidden="true"><i /><i /><i /></span>
           </button>
           <a className="m-header__calendar" href="#appointment" aria-label="Book an appointment"><Image src="/assets/m-header-calendar.svg" alt="" width={18} height={18} /></a>
           <a href="#" className="m-header__brand" aria-label="MyJewel home"><Image src="/assets/logo.svg" alt="MyJewel" width={94} height={25} priority /></a>
